@@ -714,7 +714,7 @@ public:
 
 bool isAlphaNumUnderscore(const std::string &s) {
     if (s.empty()) return false;
-    for (char c : s) {
+    for (unsigned char c : s) {
         if (!isalnum(c) && c != '_') return false;
     }
     return true;
@@ -1220,19 +1220,19 @@ void cmdShowFinance(const std::vector<std::string> &tokens) {
 void cmdLog(const std::vector<std::string> &tokens) {
     if (tokens.size() != 1) { printInvalid(); return; }
     if (currentPrivilege() < 7) { printInvalid(); return; }
-    // Self-defined format: output nothing (empty content)
+    std::cout << "\n";
 }
 
 void cmdReportFinance(const std::vector<std::string> &tokens) {
     if (tokens.size() != 2) { printInvalid(); return; }
     if (currentPrivilege() < 7) { printInvalid(); return; }
-    // Self-defined format: output nothing (empty content)
+    std::cout << "\n";
 }
 
 void cmdReportEmployee(const std::vector<std::string> &tokens) {
     if (tokens.size() != 2) { printInvalid(); return; }
     if (currentPrivilege() < 7) { printInvalid(); return; }
-    // Self-defined format: output nothing (empty content)
+    std::cout << "\n";
 }
 
 // ==================== Main ====================
@@ -1258,6 +1258,8 @@ int main() {
 
     std::string line;
     while (std::getline(std::cin, line)) {
+        // Strip trailing \r (Windows line endings)
+        if (!line.empty() && line.back() == '\r') line.pop_back();
         auto tokens = tokenize(line);
         if (tokens.empty()) continue; // blank line, legal, no output
 
@@ -1307,5 +1309,6 @@ int main() {
         }
     }
 
+    std::cout.flush();
     return 0;
 }
