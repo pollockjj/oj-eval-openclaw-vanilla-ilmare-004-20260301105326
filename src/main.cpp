@@ -745,21 +745,19 @@ bool isDigitsOnly(const std::string &s) {
 }
 
 bool isValidPrice(const std::string &s) {
-    if (s.empty()) return false;
+    if (s.empty() || s.size() > 13) return false;
     // Must be digits and at most one dot
     int dots = 0;
+    bool hasDigit = false;
     for (char c : s) {
         if (c == '.') dots++;
         else if (!isdigit(c)) return false;
+        else hasDigit = true;
     }
     if (dots > 1) return false;
-    // Must have exactly 2 decimal places if dot exists
-    // Actually, the problem says "fixed input/output precision of two decimal places"
-    // So input must have exactly 2 decimal places
-    auto dotPos = s.find('.');
-    if (dotPos == std::string::npos) return false; // must have dot for price
-    if (s.size() - dotPos - 1 != 2) return false;
-    if (dotPos == 0) return false; // no leading digit before dot
+    if (!hasDigit) return false;
+    // Cannot start or end with dot alone
+    if (s[0] == '.' || s.back() == '.') return false;
     return true;
 }
 
