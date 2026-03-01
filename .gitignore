@@ -1,0 +1,11 @@
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+code
+*.o
+*.out
+data/
+submit_acmoj/
+*.dat
+submission_ids.log
