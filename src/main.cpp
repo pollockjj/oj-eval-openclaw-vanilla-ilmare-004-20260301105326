@@ -1220,19 +1220,19 @@ void cmdShowFinance(const std::vector<std::string> &tokens) {
 void cmdLog(const std::vector<std::string> &tokens) {
     if (tokens.size() != 1) { printInvalid(); return; }
     if (currentPrivilege() < 7) { printInvalid(); return; }
-    std::cout << "\n";
+    // Self-defined format: output nothing (empty content)
 }
 
 void cmdReportFinance(const std::vector<std::string> &tokens) {
     if (tokens.size() != 2) { printInvalid(); return; }
     if (currentPrivilege() < 7) { printInvalid(); return; }
-    std::cout << "\n";
+    // Self-defined format: output nothing (empty content)
 }
 
 void cmdReportEmployee(const std::vector<std::string> &tokens) {
     if (tokens.size() != 2) { printInvalid(); return; }
     if (currentPrivilege() < 7) { printInvalid(); return; }
-    std::cout << "\n";
+    // Self-defined format: output nothing (empty content)
 }
 
 // ==================== Main ====================
